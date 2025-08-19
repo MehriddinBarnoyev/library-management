@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // or "sqlite" if using SQLite
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id            Int      @id @default(autoincrement())
+  title         String
+  author        String
+  publishedYear Int
+  genre         String
+  isAvailable   Boolean  @default(true)
+  borrows       Borrow[]
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  name    String
+  email   String   @unique
+  borrows Borrow[]
+}
+
+model Borrow {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  bookId     Int
+  borrowDate DateTime @default(now())
+  returnDate DateTime?
+  user       User     @relation(fields: [userId], references: [id])
+  book       Book     @relation(fields: [bookId], references: [id])
+}
