@@ -2,9 +2,9 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { BorrowsService } from './borrows.service';
 import { CreateBorrowDto } from './dto/create-borrow.dto';
 import { ReturnBookDto } from './dto/return-book.dto';
-import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger'; // Add these imports
+import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
-@ApiTags('borrows') // Groups under 'borrows' in Swagger UI
+@ApiTags('borrows')
 @Controller('borrows')
 export class BorrowsController {
     constructor(private readonly borrowsService: BorrowsService) { }

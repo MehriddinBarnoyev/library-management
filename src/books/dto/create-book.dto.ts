@@ -1,5 +1,5 @@
 import { IsString, IsInt, IsBoolean, IsNotEmpty } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger'; // Add this import
+import { ApiProperty } from '@nestjs/swagger'; 
 
 export class CreateBookDto {
   @ApiProperty({ description: 'The title of the book', example: 'The Hobbit' })

@@ -2,9 +2,9 @@ import { Controller, Get, Post, Patch, Delete, Param, Body, ParseIntPipe } from 
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
-import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger'; // Add these imports
+import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
-@ApiTags('books') // Groups under 'books' in Swagger UI
+@ApiTags('books') 
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
@@ -29,6 +29,4 @@ export class BooksController {
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.booksService.findOne(id);
   }
-
-  // Similarly update PATCH and DELETE...
 }

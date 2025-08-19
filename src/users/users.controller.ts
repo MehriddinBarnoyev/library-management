@@ -1,9 +1,8 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger'; // Add these imports
-
-@ApiTags('users') // Groups under 'users' in Swagger UI
+import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger'; 
+@ApiTags('users') 
 @Controller('users')
 export class UsersController {
 

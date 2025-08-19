@@ -27,7 +27,7 @@ export class BooksService {
   }
 
   async update(id: number, updateBookDto: UpdateBookDto) {
-    await this.findOne(id); // Check if book exists
+    await this.findOne(id);
     return this.prisma.book.update({
       where: { id },
       data: updateBookDto,
@@ -35,7 +35,7 @@ export class BooksService {
   }
 
   async remove(id: number) {
-    await this.findOne(id); // Check if book exists
+    await this.findOne(id);
     return this.prisma.book.delete({ where: { id } });
   }
 }
