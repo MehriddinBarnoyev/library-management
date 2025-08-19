@@ -4,10 +4,10 @@ import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { ApiTags, ApiResponse, ApiBody, ApiParam } from '@nestjs/swagger';
 
-@ApiTags('books') 
+@ApiTags('books')
 @Controller('books')
 export class BooksController {
-  constructor(private readonly booksService: BooksService) {}
+  constructor(private readonly booksService: BooksService) { }
 
   @Post()
   @ApiResponse({ status: 201, description: 'The book has been successfully created.' })
@@ -28,5 +28,21 @@ export class BooksController {
   @ApiResponse({ status: 404, description: 'Book not found.' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.booksService.findOne(id);
+  }
+
+  @Patch(':id')
+  @ApiParam({ name: 'id', type: Number })
+  @ApiResponse({ status: 200, description: 'The book has been successfully updated.' })
+  @ApiResponse({ status: 404, description: 'Book not found.' })
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateBookDto: UpdateBookDto) {
+    return this.booksService.update(id, updateBookDto);
+  }
+
+  @Delete(':id')
+  @ApiParam({ name: 'id', type: Number })
+  @ApiResponse({ status: 200, description: 'The book has been successfully deleted.' })
+  @ApiResponse({ status: 404, description: 'Book not found.' })
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.booksService.remove(id);
   }
 }

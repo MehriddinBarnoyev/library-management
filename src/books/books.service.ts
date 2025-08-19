@@ -35,7 +35,13 @@ export class BooksService {
   }
 
   async remove(id: number) {
-    await this.findOne(id);
-    return this.prisma.book.delete({ where: { id } });
+     await this.prisma.borrow.deleteMany({
+    where: { bookId: id },
+  });
+
+  // Keyin kitobni o‘chir
+  return this.prisma.book.delete({
+    where: { id },
+  });
   }
 }
